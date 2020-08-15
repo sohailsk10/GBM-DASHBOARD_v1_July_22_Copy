@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DbConnection>
+  <MYSQL>
+  <user_name>root</user_name>
+  <password>admin</password>
+  <server>localhost</server>
+  </MYSQL>
+</DbConnection>

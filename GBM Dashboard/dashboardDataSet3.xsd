@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dashboardDataSet3" targetNamespace="http://tempuri.org/dashboardDataSet3.xsd" xmlns:mstns="http://tempuri.org/dashboardDataSet3.xsd" xmlns="http://tempuri.org/dashboardDataSet3.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dashboardConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dashboardConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.GBM_Dashboard.Properties.Settings.GlobalReference.Default.dashboardConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="barchart_viewTableAdapter" GeneratorDataComponentClassName="barchart_viewTableAdapter" Name="barchart_view" UserDataComponentName="barchart_viewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dashboardConnectionString (Settings)" DbObjectName="dashboard.barchart_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `g_id`, `app_id`, `c_0_3`, `c_4_6`, `c_7_9`, `c_10_12`, `c_13_24` FROM `dashboard`.`barchart_view`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="g_id" DataSetColumn="g_id" />
+              <Mapping SourceColumn="app_id" DataSetColumn="app_id" />
+              <Mapping SourceColumn="c_0_3" DataSetColumn="c_0_3" />
+              <Mapping SourceColumn="c_4_6" DataSetColumn="c_4_6" />
+              <Mapping SourceColumn="c_7_9" DataSetColumn="c_7_9" />
+              <Mapping SourceColumn="c_10_12" DataSetColumn="c_10_12" />
+              <Mapping SourceColumn="c_13_24" DataSetColumn="c_13_24" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dashboardDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dashboardDataSet3" msprop:Generator_UserDSName="dashboardDataSet3">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="barchart_view" msprop:Generator_TableClassName="barchart_viewDataTable" msprop:Generator_TableVarName="tablebarchart_view" msprop:Generator_TablePropName="barchart_view" msprop:Generator_RowDeletingName="barchart_viewRowDeleting" msprop:Generator_RowChangingName="barchart_viewRowChanging" msprop:Generator_RowEvHandlerName="barchart_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="barchart_viewRowDeleted" msprop:Generator_UserTableName="barchart_view" msprop:Generator_RowChangedName="barchart_viewRowChanged" msprop:Generator_RowEvArgName="barchart_viewRowChangeEvent" msprop:Generator_RowClassName="barchart_viewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="g_id" msprop:Generator_ColumnVarNameInTable="columng_id" msprop:Generator_ColumnPropNameInRow="g_id" msprop:Generator_ColumnPropNameInTable="g_idColumn" msprop:Generator_UserColumnName="g_id" type="xs:int" />
+              <xs:element name="app_id" msprop:Generator_ColumnVarNameInTable="columnapp_id" msprop:Generator_ColumnPropNameInRow="app_id" msprop:Generator_ColumnPropNameInTable="app_idColumn" msprop:Generator_UserColumnName="app_id" type="xs:int" minOccurs="0" />
+              <xs:element name="c_0_3" msprop:Generator_ColumnVarNameInTable="columnc_0_3" msprop:Generator_ColumnPropNameInRow="c_0_3" msprop:Generator_ColumnPropNameInTable="c_0_3Column" msprop:Generator_UserColumnName="c_0_3" type="xs:long" />
+              <xs:element name="c_4_6" msprop:Generator_ColumnVarNameInTable="columnc_4_6" msprop:Generator_ColumnPropNameInRow="c_4_6" msprop:Generator_ColumnPropNameInTable="c_4_6Column" msprop:Generator_UserColumnName="c_4_6" type="xs:long" />
+              <xs:element name="c_7_9" msprop:Generator_ColumnVarNameInTable="columnc_7_9" msprop:Generator_ColumnPropNameInRow="c_7_9" msprop:Generator_ColumnPropNameInTable="c_7_9Column" msprop:Generator_UserColumnName="c_7_9" type="xs:long" />
+              <xs:element name="c_10_12" msprop:Generator_ColumnVarNameInTable="columnc_10_12" msprop:Generator_ColumnPropNameInRow="c_10_12" msprop:Generator_ColumnPropNameInTable="c_10_12Column" msprop:Generator_UserColumnName="c_10_12" type="xs:long" />
+              <xs:element name="c_13_24" msprop:Generator_ColumnVarNameInTable="columnc_13_24" msprop:Generator_ColumnPropNameInRow="c_13_24" msprop:Generator_ColumnPropNameInTable="c_13_24Column" msprop:Generator_UserColumnName="c_13_24" type="xs:long" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_dashboard_Connection" ProviderKey="MySql">
+        <Parameters>
+          <Parameter Name="server" Value="localhost" />
+          <Parameter Name="database" Value="dashboard" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="Port" Value="3306" />
+          <Parameter Name="userid" Value="root" />
+          <Parameter Name="password" Value="admin" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="gbm_iva">
+        <Tables>
+          <Table Name="gbm_iva" X="30" Y="30" Width="125" Height="132" />
+          <Table Name="configuration_type_tbl" X="185" Y="30" Width="125" Height="168" />
+          <Table Name="configuration_tbl" X="340" Y="30" Width="125" Height="222" />
+          <Table Name="camera_configuration_tbl" X="495" Y="30" Width="125" Height="204" />
+          <Table Name="videos" X="650" Y="30" Width="125" Height="150" />
+          <Table Name="violation_tbl" X="805" Y="30" Width="125" Height="150" />
+          <Relation Type="Inner" Parent="gbm_iva" Nested="configuration_type_tbl">
+            <KeyColumn Parent="ID" Nested="fk_gbm_iva_id" />
+          </Relation>
+          <Relation Type="Inner" Parent="configuration_type_tbl" Nested="configuration_tbl">
+            <KeyColumn Parent="ID" Nested="config_type_id" />
+          </Relation>
+          <Relation Type="Inner" Parent="configuration_tbl" Nested="camera_configuration_tbl">
+            <KeyColumn Parent="ID" Nested="config_id_fld" />
+          </Relation>
+          <Relation Type="Inner" Parent="camera_configuration_tbl" Nested="videos">
+            <KeyColumn Parent="ID" Nested="camera_config_id" />
+          </Relation>
+          <Relation Type="Inner" Parent="videos" Nested="violation_tbl">
+            <KeyColumn Parent="Id" Nested="fk_video_id" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="gbm_iva" Name="Name" Alias="Industry_Type" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" Alias="App" />
+          <Column Table="camera_configuration_tbl" Name="camera_ip_fid" Alias="Camera_IP" />
+          <Column Table="videos" Name="video_name_fld" Alias="Video" />
+          <Column Table="configuration_tbl" Name="configuaration_description_fld" Alias="Site" />
+          <Column Table="violation_tbl" Name="violation_video_path_fld" Aggregate="CountDistinct" Alias="CountDistinct_violation_video_path_fld" />
+        </Columns>
+        <Grouping>
+          <Column Table="gbm_iva" Name="Name" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" />
+          <Column Table="configuration_tbl" Name="configuaration_description_fld" />
+          <Column Table="camera_configuration_tbl" Name="camera_ip_fid" />
+          <Column Table="videos" Name="video_name_fld" />
+        </Grouping>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="gbm_iva">
+            <Field Name="Industry_Type" Type="String" />
+            <Field Name="App" Type="String" />
+            <Field Name="Camera_IP" Type="String" />
+            <Field Name="Video" Type="String" />
+            <Field Name="Site" Type="String" />
+            <Field Name="CountDistinct_violation_video_path_fld" Type="Int32" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="By Industry Type" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Dimension DataMember="Industry_Type" DefaultId="DataItem0" />
+        <Dimension DataMember="Industry_Type" DefaultId="DataItem2" />
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem1" />
+        <Dimension DataMember="App" DefaultId="DataItem3" />
+        <Dimension DataMember="Site" DefaultId="DataItem4" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+        <SeriesDimension DefaultId="DataItem3" />
+        <SeriesDimension DefaultId="DataItem4" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="FullStackedBar">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="Page 1" />
+        <Page ComponentName="dashboardTabPage2" Name="Page 2" />
+        <Page ComponentName="dashboardTabPage3" Name="Page 3" />
+        <Page ComponentName="dashboardTabPage4" Name="Page 4" />
+        <Page ComponentName="dashboardTabPage5" Name="Summary - Gauge" />
+        <Page ComponentName="dashboardTabPage6" Name="Page 5" />
+        <Page ComponentName="dashboardTabPage7" Name="Page 6" />
+      </Pages>
+    </TabContainer>
+    <Pie ComponentName="pieDashboardItem1" Name="By Application" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva" PieType="Donut" LabelContentType="ArgumentValueAndPercent" ShowPieCaptions="false">
+      <DataItems>
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem1" />
+        <Dimension DataMember="App" DefaultId="DataItem4" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem4" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem3" Name="By Sites" ParentContainer="dashboardTabPage3" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Dimension DataMember="Site" DefaultId="DataItem0" />
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem1" />
+        <Dimension DataMember="App" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem4" Name="By Camera" ParentContainer="dashboardTabPage4" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Dimension DataMember="Camera_IP" DefaultId="DataItem0" />
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem1" />
+        <Dimension DataMember="Camera_IP" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <BubbleMap ComponentName="bubbleMapDashboardItem1" Name="Summary Map" ParentContainer="dashboardTabPage5" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Dimension DataMember="Site" DefaultId="DataItem0" />
+        <Dimension DataMember="Industry_Type" DefaultId="DataItem1" />
+        <Dimension DataMember="App" DefaultId="DataItem2" />
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem3" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+        <Dimension DefaultId="DataItem2" />
+      </HiddenDimensions>
+      <ViewArea TopLatitude="83.645130000000009" BottomLatitude="-55.611829999999962" LeftLongitude="-179.99999999999997" CenterPointLatitude="44.089080744803773" CenterPointLongitude="1.4210854715202004E-13" />
+      <MapLegend />
+      <WeightedLegend />
+      <Weight DefaultId="DataItem3" />
+      <UniformScale />
+    </BubbleMap>
+    <Gauge ComponentName="gaugeDashboardItem1" Name="Summary Dials" ParentContainer="dashboardTabPage6" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva" ViewType="LinearVertical">
+      <DataItems>
+        <Dimension DataMember="App" DefaultId="DataItem0" />
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <GaugeElement>
+        <TargetValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+      </GaugeElement>
+    </Gauge>
+    <Gauge ComponentName="gaugeDashboardItem2" Name="Summary Gauge" ParentContainer="dashboardTabPage7" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Measure DataMember="CountDistinct_violation_video_path_fld" DefaultId="DataItem0" />
+        <Dimension DataMember="Industry_Type" DefaultId="DataItem1" />
+        <Dimension DataMember="App" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <GaugeElement>
+        <TargetValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+      </GaugeElement>
+    </Gauge>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1" Weight="100">
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage1" Weight="100">
+          <LayoutItem DashboardItem="chartDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage2" Weight="100">
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage3" Weight="100">
+          <LayoutItem DashboardItem="chartDashboardItem3" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage4" Weight="100">
+          <LayoutItem DashboardItem="chartDashboardItem4" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage5" Weight="100">
+          <LayoutItem DashboardItem="bubbleMapDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage6" Weight="100">
+          <LayoutItem DashboardItem="gaugeDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage7" Weight="100">
+          <LayoutItem DashboardItem="gaugeDashboardItem2" Weight="100" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

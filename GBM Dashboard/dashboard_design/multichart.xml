@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-IN">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_dashboard_Connection" ProviderKey="MySql">
+        <Parameters>
+          <Parameter Name="server" Value="localhost" />
+          <Parameter Name="database" Value="dashboard" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="Port" Value="3306" />
+          <Parameter Name="userid" Value="root" />
+          <Parameter Name="password" Value="admin" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="app_time_view">
+        <Parameter Name="App" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?App)</Parameter>
+        <Tables>
+          <Table Name="barchart_view" X="30" Y="30" Width="125" Height="186" />
+          <Table Name="configuration_type_tbl" X="185" Y="30" Width="125" Height="168" />
+          <Relation Type="Inner" Parent="barchart_view" Nested="configuration_type_tbl">
+            <KeyColumn Parent="g_id" Nested="fk_gbm_iva_id" />
+            <KeyColumn Parent="app_id" Nested="ID" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="barchart_view" Name="c_0_3" />
+          <Column Table="barchart_view" Name="c_4_6" />
+          <Column Table="barchart_view" Name="c_7_9" />
+          <Column Table="barchart_view" Name="c_10_12" />
+          <Column Table="barchart_view" Name="c_13_24" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" Alias="Application" />
+        </Columns>
+        <Filter>[barchart_view.app_id] = ?App</Filter>
+        <GroupFilter></GroupFilter>
+      </Query>
+      <Query Type="SelectQuery" Name="linechart_view">
+        <Parameter Name="App" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?App)</Parameter>
+        <Tables>
+          <Table Name="linechart_view" X="30" Y="30" Width="125" Height="132" />
+          <Table Name="configuration_type_tbl" X="185" Y="30" Width="125" Height="168" />
+          <Relation Type="Inner" Parent="linechart_view" Nested="configuration_type_tbl">
+            <KeyColumn Parent="g_id" Nested="fk_gbm_iva_id" />
+            <KeyColumn Parent="app_id" Nested="ID" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="linechart_view" Name="hours_fld" />
+          <Column Table="linechart_view" Name="c_v_id" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" />
+        </Columns>
+        <Filter>[linechart_view.app_id] = ?App</Filter>
+        <GroupFilter></GroupFilter>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="app_time_view">
+            <Field Name="c_0_3" Type="Int64" />
+            <Field Name="c_4_6" Type="Int64" />
+            <Field Name="c_7_9" Type="Int64" />
+            <Field Name="c_10_12" Type="Int64" />
+            <Field Name="c_13_24" Type="Int64" />
+            <Field Name="Application" Type="String" />
+          </View>
+          <View Name="linechart_view">
+            <Field Name="hours_fld" Type="Int64" />
+            <Field Name="c_v_id" Type="Int64" />
+            <Field Name="configuration_description_fld" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="App" Type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="15" />
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem2" Name="" DataSource="dashboardSqlDataSource1" DataMember="linechart_view">
+      <DataItems>
+        <Dimension DataMember="configuration_description_fld" DefaultId="DataItem0" />
+        <Dimension DataMember="hours_fld" DefaultId="DataItem2" />
+        <Measure DataMember="c_v_id" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="Point">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem1" Name="" DataSource="dashboardSqlDataSource1" DataMember="app_time_view">
+      <DataItems>
+        <Dimension DataMember="Application" DefaultId="DataItem1" />
+        <Dimension DataMember="Application" DefaultId="DataItem0" />
+        <Measure DataMember="c_0_3" DefaultId="DataItem2" />
+        <Measure DataMember="c_4_6" DefaultId="DataItem3" />
+        <Measure DataMember="c_7_9" DefaultId="DataItem4" />
+        <Measure DataMember="c_10_12" DefaultId="DataItem5" />
+        <Measure DataMember="c_13_24" DefaultId="DataItem6" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="0 to 3">
+              <Value DefaultId="DataItem2" />
+            </Simple>
+            <Simple Name="4 to 6">
+              <Value DefaultId="DataItem3" />
+            </Simple>
+            <Simple Name="7 to 9">
+              <Value DefaultId="DataItem4" />
+            </Simple>
+            <Simple Name="10 to 12">
+              <Value DefaultId="DataItem5" />
+            </Simple>
+            <Simple Name="13 to 24">
+              <Value DefaultId="DataItem6" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+      <ChartLegend InsidePosition="BottomRightHorizontal" OutsidePosition="TopLeftHorizontal" />
+      <AxisX TitleVisible="true" Title="Application" />
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="chartDashboardItem1" Weight="49.938650306748464" />
+      <LayoutItem DashboardItem="chartDashboardItem2" Weight="50.061349693251536" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

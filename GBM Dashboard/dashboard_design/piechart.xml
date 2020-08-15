@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-IN">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_dashboard_Connection" ProviderKey="MySql">
+        <Parameters>
+          <Parameter Name="server" Value="localhost" />
+          <Parameter Name="database" Value="dashboard" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="Port" Value="3306" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="gbm_iva">
+        <Parameter Name="qryparam1" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?Industry_type)</Parameter>
+        <Parameter Name="qryparam2" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?App)</Parameter>
+        <Tables>
+          <Table Name="configuration_type_tbl" X="30" Y="30" Width="125" Height="168" />
+          <Table Name="configuration_tbl" X="185" Y="30" Width="125" Height="222" />
+          <Table Name="camera_configuration_tbl" X="340" Y="30" Width="125" Height="204" />
+          <Table Name="videos" X="495" Y="30" Width="125" Height="150" />
+          <Table Name="violation_tbl" X="650" Y="30" Width="125" Height="150" />
+          <Relation Type="Inner" Parent="configuration_type_tbl" Nested="configuration_tbl">
+            <KeyColumn Parent="ID" Nested="config_type_id" />
+          </Relation>
+          <Relation Type="Inner" Parent="configuration_tbl" Nested="camera_configuration_tbl">
+            <KeyColumn Parent="ID" Nested="config_id_fld" />
+          </Relation>
+          <Relation Type="Inner" Parent="camera_configuration_tbl" Nested="videos">
+            <KeyColumn Parent="ID" Nested="camera_config_id" />
+          </Relation>
+          <Relation Type="Inner" Parent="videos" Nested="violation_tbl">
+            <KeyColumn Parent="Id" Nested="fk_video_id" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" Alias="App" />
+          <Column Table="configuration_tbl" Name="configuaration_description_fld" Alias="Site" />
+          <Column Table="camera_configuration_tbl" Name="camera_ip_fid" Alias="Camera" />
+          <Column Table="videos" Name="video_name_fld" Alias="Video" />
+          <Column Table="violation_tbl" Name="violation_video_path_fld" Aggregate="CountDistinct" Alias="Violations" />
+        </Columns>
+        <Grouping>
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" />
+          <Column Table="configuration_tbl" Name="configuaration_description_fld" />
+          <Column Table="camera_configuration_tbl" Name="camera_ip_fid" />
+          <Column Table="videos" Name="video_name_fld" />
+        </Grouping>
+        <Filter>[configuration_type_tbl.fk_gbm_iva_id] = ?qryparam1 And [configuration_type_tbl.ID] = ?qryparam2</Filter>
+        <GroupFilter></GroupFilter>
+      </Query>
+      <Query Type="SelectQuery" Name="app_time_view">
+        <Parameter Name="Industry_type" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?Industry_type)</Parameter>
+        <Parameter Name="App" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?App)</Parameter>
+        <Tables>
+          <Table Name="barchart_view" X="30" Y="30" Width="125" Height="150" />
+          <Table Name="configuration_type_tbl" X="185" Y="30" Width="125" Height="168" />
+          <Relation Type="Inner" Parent="barchart_view" Nested="configuration_type_tbl">
+            <KeyColumn Parent="g_id" Nested="fk_gbm_iva_id" />
+            <KeyColumn Parent="app_id" Nested="ID" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="barchart_view" Name="c_0_3" />
+          <Column Table="barchart_view" Name="c_4_6" />
+          <Column Table="barchart_view" Name="c_7_9" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" Alias="Application" />
+        </Columns>
+        <Filter>[barchart_view.g_id] = ?Industry_type And [barchart_view.app_id] = ?App</Filter>
+        <GroupFilter></GroupFilter>
+      </Query>
+      <Query Type="SelectQuery" Name="linechart_view">
+        <Parameter Name="Industry_type" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?Industry_type)</Parameter>
+        <Parameter Name="App" Type="DevExpress.DataAccess.Expression">(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)(?App)</Parameter>
+        <Tables>
+          <Table Name="linechart_view" X="30" Y="30" Width="125" Height="132" />
+          <Table Name="configuration_type_tbl" X="185" Y="30" Width="125" Height="168" />
+          <Relation Type="Inner" Parent="linechart_view" Nested="configuration_type_tbl">
+            <KeyColumn Parent="g_id" Nested="fk_gbm_iva_id" />
+            <KeyColumn Parent="app_id" Nested="ID" />
+          </Relation>
+        </Tables>
+        <Columns>
+          <Column Table="linechart_view" Name="hours_fld" />
+          <Column Table="linechart_view" Name="c_v_id" />
+          <Column Table="configuration_type_tbl" Name="configuration_description_fld" />
+        </Columns>
+        <Filter>[linechart_view.g_id] = ?Industry_type And [linechart_view.app_id] = ?App</Filter>
+        <GroupFilter></GroupFilter>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="gbm_iva">
+            <Field Name="App" Type="String" />
+            <Field Name="Site" Type="String" />
+            <Field Name="Camera" Type="String" />
+            <Field Name="Video" Type="String" />
+            <Field Name="Violations" Type="Int32" />
+          </View>
+          <View Name="app_time_view">
+            <Field Name="c_0_3" Type="Int64" />
+            <Field Name="c_4_6" Type="Int64" />
+            <Field Name="c_7_9" Type="Int64" />
+            <Field Name="Application" Type="String" />
+          </View>
+          <View Name="linechart_view">
+            <Field Name="hours_fld" Type="Int64" />
+            <Field Name="c_v_id" Type="Int64" />
+            <Field Name="configuration_description_fld" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="Industry_type" Type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="12" />
+    <Parameter Name="App" Type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Value="15" />
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem2" Name="Chart 2" DataSource="dashboardSqlDataSource1" DataMember="linechart_view">
+      <DataItems>
+        <Dimension DataMember="configuration_description_fld" DefaultId="DataItem0" />
+        <Dimension DataMember="hours_fld" DefaultId="DataItem2" />
+        <Measure DataMember="c_v_id" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="Point">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="dashboardSqlDataSource1" DataMember="app_time_view">
+      <DataItems>
+        <Dimension DataMember="Application" DefaultId="DataItem1" />
+        <Dimension DataMember="Application" DefaultId="DataItem0" />
+        <Measure DataMember="c_0_3" DefaultId="DataItem2" />
+        <Measure DataMember="c_4_6" DefaultId="DataItem3" />
+        <Measure DataMember="c_7_9" DefaultId="DataItem4" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem2" />
+            </Simple>
+            <Simple>
+              <Value DefaultId="DataItem3" />
+            </Simple>
+            <Simple>
+              <Value DefaultId="DataItem4" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+      <ChartLegend OutsidePosition="TopLeftHorizontal" />
+    </Chart>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="dashboardSqlDataSource1" DataMember="gbm_iva">
+      <DataItems>
+        <Measure DataMember="Violations" DefaultId="DataItem0" />
+        <Dimension DataMember="App" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="chartDashboardItem1" Weight="45.889570552147241" />
+      <LayoutGroup Weight="54.110429447852759">
+        <LayoutItem DashboardItem="chartDashboardItem2" Weight="50" />
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="50" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
