@@ -98,6 +98,7 @@ namespace GBM_Dashboard
 
     public class IPaddress
     {
+        //test
         /*public string getIpaddress()
         {
             string strIpaddress = "";
