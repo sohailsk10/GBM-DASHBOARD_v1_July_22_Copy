@@ -616,12 +616,18 @@ namespace GBM_Dashboard
 
             try
             {
+                /*IPaddress dbCon = new DbConnection();
+                string connetionString = dbCon.getConnection();*/
+                IPaddress ip = new IPaddress();
+                string connect_ip = ip.getIpaddress();
+                IPAddress ipAddress = new IPAddress(Encoding.ASCII.GetBytes(connect_ip));
+
                 // Establish the remote endpoint for the socket.  
                 // This example uses port 11000 on the local computer.  
                 IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
                 //List<string> listIpAddress = new List()<string>;
                 //listIpAddress.Add("192.168.0.104");
-                IPAddress ipAddress = new IPAddress(Encoding.ASCII.GetBytes("192.168.0.104")); //ipHostInfo.AddressList[1];
+               // IPAddress ipAddress = new IPAddress(Encoding.ASCII.GetBytes("192.168.0.104")); //ipHostInfo.AddressList[1];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, 5005);
 
                 // Create a TCP/IP  socket.  
@@ -813,6 +819,8 @@ namespace GBM_Dashboard
 
             try
             {
+
+
                 // Establish the remote endpoint for the socket.  
                 // This example uses port 11000 on the local computer.  
                 IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());

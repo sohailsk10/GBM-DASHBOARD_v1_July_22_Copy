@@ -99,7 +99,7 @@ namespace GBM_Dashboard
     public class IPaddress
     {
         //test
-        /*public string getIpaddress()
+        public string getIpaddress()
         {
             string strIpaddress = "";
             try
@@ -107,22 +107,23 @@ namespace GBM_Dashboard
                 string workingDirectory = Environment.CurrentDirectory;
                 string projectDirectory = System.IO.Directory.GetParent(workingDirectory).Parent.FullName;
                 string IpAddress = "";
-                string userPass = "";
-                string server = "";
+                /*string userPass = "";
+                string server = "";*/
                 //MessageBox.Show("workingDirectory:" + workingDirectory);
                 //MessageBox.Show("projectDirectory:" + projectDirectory);
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(workingDirectory + "\\dbconnection\\connection.xml");
+                xmlDoc.Load(workingDirectory + "\\Ip_Address\\Ip_Connection.xml");
                 XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/DbConnection/MYSQL");
                 //string proID = "", proName = "", price = "";
                 foreach (XmlNode node in nodeList)
                 {
                     IpAddress = node.SelectSingleNode("user_name").InnerText;
-                    userPass = node.SelectSingleNode("password").InnerText;
+                    /*userPass = node.SelectSingleNode("password").InnerText;
                     server = node.SelectSingleNode("server").InnerText;
-                    //MessageBox.Show(userName + " " + userPass + " " + server);
+       */             //MessageBox.Show(userName + " " + userPass + " " + server);
                 }
-                strIpaddress = "server=" + server + ";database=dashboard;uid=" + userName + ";pwd=" + userPass + ";";
+                // strIpaddress = "server=" + server + ";database=dashboard;uid=" + IpAddress + ";pwd=" + userPass + ";";
+                strIpaddress = "IpAddress=" + IpAddress + ";";
                 //MessageBox.Show(strDbConnection);
             }
             catch (Exception ex)
@@ -130,7 +131,7 @@ namespace GBM_Dashboard
                 MessageBox.Show("No Ip Address Found");
             }
             return strIpaddress;
-        }*/
+        }
 
     }
 }

@@ -377,6 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="db_connection\connection.xml" />
+    <Content Include="Ip_Address\Ip_Connection.xml" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">
