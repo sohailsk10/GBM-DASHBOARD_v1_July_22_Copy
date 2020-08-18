@@ -819,23 +819,29 @@ namespace GBM_Dashboard
 
             try
             {
-
+                IPaddress ip_A = new IPaddress();
+                string connect_ip = ip_A.getIpaddress();
+               // MessageBox.Show(connect_ip);
+                IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+                IPAddress ipaddr = IPAddress.Parse(connect_ip);
+                //IPAddress ipAddress = new IPAddress(Encoding.ASCII.GetBytes(connect_ip));
+                //MessageBox.Show(ipAddress.GetType().ToString());
+                //Console.WriteLine("test"+ipaddr.GetType());
 
                 // Establish the remote endpoint for the socket.  
                 // This example uses port 11000 on the local computer.  
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-                IPAddress ipAddress = IPAddress.Parse("192.168.0.104") ;// ipHostInfo.AddressList[1];
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 5005);
+                
+                //IPAddress ipAddress = IPAddress.Parse("192.168.0.104") ;// ipHostInfo.AddressList[1];
+                IPEndPoint remoteEP = new IPEndPoint(ipaddr, 5005);
 
                 // Create a TCP/IP  socket.  
-                socket = new Socket(ipAddress.AddressFamily,
+                socket = new Socket(ipaddr.AddressFamily,
                     SocketType.Stream, ProtocolType.Tcp);
 
                 // Connect the socket to the remote endpoint. Catch any errors.  
                 try
                 {
                     socket.Connect(remoteEP);
-
                     string cam_url = "0";
                     if (ip == "0")
                     {
@@ -921,15 +927,18 @@ namespace GBM_Dashboard
                 }
                 catch (ArgumentNullException ane)
                 {
+                    MessageBox.Show("No Ip Found");
                     Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
 
                 }
                 catch (SocketException se)
                 {
+                    MessageBox.Show("No Socket Found");
                     Console.WriteLine("SocketException : {0}", se.ToString());
                 }
                 catch (Exception e)
                 {
+                    MessageBox.Show("No test Found");
                     Console.WriteLine("Unexpected exception : {0}", e.ToString());
                 }
 
@@ -978,13 +987,6 @@ namespace GBM_Dashboard
 
         }
 
-        private void gridControl2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void rdbtn_online_Click(object sender, EventArgs e)
         {
             //showDemo sd = new showDemo();
@@ -1015,7 +1017,6 @@ namespace GBM_Dashboard
                 }
             }
         }
-
         private void rdbtn_start_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
@@ -1037,8 +1038,6 @@ namespace GBM_Dashboard
             }
             
         }
-
-        
         private void gridView5_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (!gridControl5.IsFocused) return;
@@ -1070,7 +1069,6 @@ namespace GBM_Dashboard
                 MessageBox.Show("No Data Found");
             }
         }
-
         private void gridView5_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Message first or second");

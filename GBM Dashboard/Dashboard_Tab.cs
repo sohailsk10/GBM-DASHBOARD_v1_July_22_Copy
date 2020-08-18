@@ -13,7 +13,7 @@ using DevExpress.XtraTab;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraPrinting.Control;
-using iTextSharp.text;
+//using iTextSharp.text;
 //using iTextSharp.text.pdf;
 using System.IO;
 //using Document = iTextSharp.text.Document;

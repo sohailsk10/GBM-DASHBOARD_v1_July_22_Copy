@@ -113,17 +113,18 @@ namespace GBM_Dashboard
                 //MessageBox.Show("projectDirectory:" + projectDirectory);
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(workingDirectory + "\\Ip_Address\\Ip_Connection.xml");
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/DbConnection/MYSQL");
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Ip_Connection_new/IP_Config");
                 //string proID = "", proName = "", price = "";
                 foreach (XmlNode node in nodeList)
                 {
-                    IpAddress = node.SelectSingleNode("user_name").InnerText;
+                    IpAddress = node.SelectSingleNode("test").InnerText;
                     /*userPass = node.SelectSingleNode("password").InnerText;
                     server = node.SelectSingleNode("server").InnerText;
-       */             //MessageBox.Show(userName + " " + userPass + " " + server);
+       */           // MessageBox.Show(IpAddress + " ");
                 }
                 // strIpaddress = "server=" + server + ";database=dashboard;uid=" + IpAddress + ";pwd=" + userPass + ";";
-                strIpaddress = "IpAddress=" + IpAddress + ";";
+                //strIpaddress = "IpAddress=" + IpAddress + ";";
+                strIpaddress = IpAddress;
                 //MessageBox.Show(strDbConnection);
             }
             catch (Exception ex)
