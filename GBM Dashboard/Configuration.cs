@@ -10,11 +10,30 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraVerticalGrid;
+using System.Threading;
+using MySql.Data.MySqlClient;
+using System.Net.Sockets;
+using System.Collections;
+using System.Net;
+using System.IO;
+using DevExpress.Charts.Native;
+using System.Windows.Media.Media3D;
+using DevExpress.XtraEditors.Camera;
+using DevExpress.XtraGrid.Views.Card;
+using DevExpress.XtraEditors.Senders;
 
 namespace GBM_Dashboard
 {
     public partial class Configuration : UserControl
     {
+        Socket socket = null;
+        private Thread timerThread;
+        showDemo sd = new showDemo();
+        bool demo = false;
+        string video_path = "";
+        public static string camera_id = "";
+        string cam_id = "";
+
         private static Configuration _instance;
         public static Configuration Instance
         {
@@ -69,11 +88,9 @@ namespace GBM_Dashboard
             // TODO: This line of code loads data into the 'dashboardDataSet.configuration_type_tbl' table. You can move, or remove it, as needed.
             this.configuration_type_tblTableAdapter.Fill(this.dashboardDataSet.configuration_type_tbl);
             //this.repositoryItemButtonEdit1.Click += new EventHandler(this.repositoryItemButtonEdit1_Click);
-
             this.gbm_ivaTableAdapter.Fill(this.dashboardDataSet.gbm_iva);
-
             load_ratios();
-
+            get_camera();
         }
 
         public IEnumerable<Control> GetAll(Control control)
@@ -117,8 +134,6 @@ namespace GBM_Dashboard
                 _control.Height = (int)(_control.Height * height_ratio);
             }
         }
-
-
 
         private void controlNavigator1_ButtonClick(object sender, DevExpress.XtraEditors.NavigatorButtonClickEventArgs e)
         {
@@ -231,21 +246,11 @@ namespace GBM_Dashboard
 
         }
 
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 (sender as ButtonEdit).EditValue = ofd.FileName;
-
-        }
-
-        private void controlNavigator2_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -324,11 +329,6 @@ namespace GBM_Dashboard
             }
         }
 
-        private void gridControl3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void repositoryItemButtonEdit2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -379,6 +379,28 @@ namespace GBM_Dashboard
         {
             gridControl3.BackColor = Color.LightGreen;
         }
-    }
 
+        private void get_camera()
+        {
+            string ip = "", port = "", user = "", pwd = "";
+            ArrayList rows = new ArrayList();
+            Int32[] selectedRowHandles = cardView1.GetSelectedRows();
+            for (int i = 0; i < selectedRowHandles.Length; i++)
+            {
+                int selectedRowHandle = selectedRowHandles[i];
+                rows.Add(cardView1.GetDataRow(selectedRowHandle));
+                DataRow row = rows[i] as DataRow;
+                camera_id = row["ID"].ToString();
+                cardView1.Tag = camera_id;
+            }
+        }
+        public static int id = -1;
+        
+        private void cardView1_Click(object sender, EventArgs e)
+        {
+            get_camera();
+            Cam_test1 cam_Test1 = new Cam_test1();
+            cam_Test1.Show();
+        }
+    }
 }

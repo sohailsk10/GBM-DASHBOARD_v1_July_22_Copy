@@ -53,11 +53,10 @@ namespace GBM_Dashboard
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colconfiguration_description_fld = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colconfiguration_remarks_fld = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colimage_path = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colactive_fld = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemPopupGalleryEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit();
@@ -91,6 +90,7 @@ namespace GBM_Dashboard
             this.colcamera_port_no_fid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcamera_active_fid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colconfig_id_fld = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbm_ivaTableAdapter = new GBM_Dashboard.dashboardDataSetTableAdapters.gbm_ivaTableAdapter();
             this.configuration_type_tblTableAdapter = new GBM_Dashboard.dashboardDataSetTableAdapters.configuration_type_tblTableAdapter();
             this.configuration_tblTableAdapter = new GBM_Dashboard.dashboardDataSetTableAdapters.configuration_tblTableAdapter();
@@ -111,9 +111,9 @@ namespace GBM_Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKgbmivaconfigtypeidBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupGalleryEdit1)).BeginInit();
@@ -132,6 +132,7 @@ namespace GBM_Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fkcameraconfigtblconfigtblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -146,7 +147,7 @@ namespace GBM_Dashboard
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1137, 790);
-            this.splitContainerControl1.SplitterPosition = 419;
+            this.splitContainerControl1.SplitterPosition = 466;
             this.splitContainerControl1.TabIndex = 0;
             // 
             // splitContainerControl2
@@ -163,7 +164,7 @@ namespace GBM_Dashboard
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl2.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1133, 419);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1133, 466);
             this.splitContainerControl2.SplitterPosition = 262;
             this.splitContainerControl2.TabIndex = 0;
             // 
@@ -218,7 +219,6 @@ namespace GBM_Dashboard
             this.gridView2});
             this.gridControl3.EditorKeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridControl3_EditorKeyPress);
             this.gridControl3.BackColorChanged += new System.EventHandler(this.gridControl3_BackColorChanged);
-            this.gridControl3.Click += new System.EventHandler(this.gridControl3_Click);
             this.gridControl3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridControl3_KeyDown);
             // 
             // gbmivaBindingSource
@@ -309,13 +309,12 @@ namespace GBM_Dashboard
             this.repositoryItemTextEdit2,
             this.repositoryItemSearchLookUpEdit1,
             this.repositoryItemColorPickEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(1125, 139);
+            this.gridControl1.Size = new System.Drawing.Size(1125, 186);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.gridControl1.ProcessGridKey += new System.Windows.Forms.KeyEventHandler(this.gridControl1_ProcessGridKey);
             this.gridControl1.EditorKeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridControl1_EditorKeyPress);
-            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             this.gridControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridControl1_EditorKeyPress);
             // 
             // fKgbmivaconfigtypeidBindingSource
@@ -334,7 +333,6 @@ namespace GBM_Dashboard
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colconfiguration_description_fld,
             this.colconfiguration_remarks_fld,
-            this.colimage_path,
             this.colactive_fld});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -359,29 +357,13 @@ namespace GBM_Dashboard
             this.colconfiguration_remarks_fld.VisibleIndex = 1;
             this.colconfiguration_remarks_fld.Width = 87;
             // 
-            // colimage_path
-            // 
-            this.colimage_path.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.colimage_path.FieldName = "image_path";
-            this.colimage_path.Name = "colimage_path";
-            this.colimage_path.Visible = true;
-            this.colimage_path.VisibleIndex = 2;
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
-            // 
             // colactive_fld
             // 
             this.colactive_fld.FieldName = "active_fld";
             this.colactive_fld.MinWidth = 23;
             this.colactive_fld.Name = "colactive_fld";
             this.colactive_fld.Visible = true;
-            this.colactive_fld.VisibleIndex = 3;
+            this.colactive_fld.VisibleIndex = 2;
             this.colactive_fld.Width = 87;
             // 
             // repositoryItemHyperLinkEdit1
@@ -396,6 +378,14 @@ namespace GBM_Dashboard
             this.repositoryItemImageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemImageEdit1.Name = "repositoryItemImageEdit1";
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             // 
             // repositoryItemPictureEdit1
             // 
@@ -452,8 +442,8 @@ namespace GBM_Dashboard
             this.splitContainerControl3.Panel1.Text = "Panel1";
             this.splitContainerControl3.Panel2.Controls.Add(this.splitContainerControl5);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(1133, 357);
-            this.splitContainerControl3.SplitterPosition = 168;
+            this.splitContainerControl3.Size = new System.Drawing.Size(1133, 310);
+            this.splitContainerControl3.SplitterPosition = 87;
             this.splitContainerControl3.TabIndex = 0;
             // 
             // splitContainerControl4
@@ -469,7 +459,7 @@ namespace GBM_Dashboard
             this.splitContainerControl4.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl4.Panel2.Controls.Add(this.vGridControl1);
             this.splitContainerControl4.Panel2.Text = "Panel2";
-            this.splitContainerControl4.Size = new System.Drawing.Size(1129, 168);
+            this.splitContainerControl4.Size = new System.Drawing.Size(1129, 87);
             this.splitContainerControl4.SplitterPosition = 33;
             this.splitContainerControl4.TabIndex = 0;
             // 
@@ -484,7 +474,6 @@ namespace GBM_Dashboard
             this.controlNavigator2.TabIndex = 1;
             this.controlNavigator2.Text = "controlNavigator2";
             this.controlNavigator2.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.controlNavigator2_ButtonClick);
-            this.controlNavigator2.Click += new System.EventHandler(this.controlNavigator2_Click);
             // 
             // vGridControl1
             // 
@@ -520,12 +509,11 @@ namespace GBM_Dashboard
             this.rowuser_def5});
             this.vGridControl1.ScrollsStyle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.vGridControl1.ScrollsStyle.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.vGridControl1.Size = new System.Drawing.Size(1121, 117);
+            this.vGridControl1.Size = new System.Drawing.Size(1121, 36);
             this.vGridControl1.TabIndex = 0;
             this.vGridControl1.TreeButtonStyle = DevExpress.XtraVerticalGrid.TreeButtonStyle.ExplorerBar;
             this.vGridControl1.EditorKeyDown += new System.Windows.Forms.KeyEventHandler(this.vGridControl1_KeyDown);
             this.vGridControl1.EditorKeyPress += new System.Windows.Forms.KeyPressEventHandler(this.vGridControl1_EditorKeyPress);
-            this.vGridControl1.Click += new System.EventHandler(this.controlNavigator2_Click);
             this.vGridControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.vGridControl1_KeyDown);
             // 
             // fkconfigtblconfigtypetblBindingSource
@@ -599,9 +587,10 @@ namespace GBM_Dashboard
             this.splitContainerControl5.Panel1.Controls.Add(this.controlNavigator3);
             this.splitContainerControl5.Panel1.Text = "Panel1";
             this.splitContainerControl5.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.splitContainerControl5.Panel2.Controls.Add(this.pictureBox1);
             this.splitContainerControl5.Panel2.Controls.Add(this.gridControl2);
             this.splitContainerControl5.Panel2.Text = "Panel2";
-            this.splitContainerControl5.Size = new System.Drawing.Size(1129, 175);
+            this.splitContainerControl5.Size = new System.Drawing.Size(1129, 209);
             this.splitContainerControl5.SplitterPosition = 32;
             this.splitContainerControl5.TabIndex = 0;
             // 
@@ -625,7 +614,7 @@ namespace GBM_Dashboard
             this.gridControl2.Location = new System.Drawing.Point(0, 0);
             this.gridControl2.MainView = this.cardView1;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1121, 125);
+            this.gridControl2.Size = new System.Drawing.Size(1121, 159);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.cardView1});
@@ -639,6 +628,8 @@ namespace GBM_Dashboard
             // 
             // cardView1
             // 
+            this.cardView1.AppearancePrint.Card.BorderColor = System.Drawing.Color.Purple;
+            this.cardView1.AppearancePrint.Card.Options.UseBorderColor = true;
             this.cardView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID1,
             this.colfolder_fid,
@@ -651,6 +642,7 @@ namespace GBM_Dashboard
             this.cardView1.GridControl = this.gridControl2;
             this.cardView1.Name = "cardView1";
             this.cardView1.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Auto;
+            this.cardView1.Click += new System.EventHandler(this.cardView1_Click);
             // 
             // colID1
             // 
@@ -724,6 +716,14 @@ namespace GBM_Dashboard
             this.colconfig_id_fld.VisibleIndex = 7;
             this.colconfig_id_fld.Width = 87;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(603, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(462, 124);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // gbm_ivaTableAdapter
             // 
             this.gbm_ivaTableAdapter.ClearBeforeFill = true;
@@ -766,9 +766,9 @@ namespace GBM_Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKgbmivaconfigtypeidBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupGalleryEdit1)).EndInit();
@@ -787,6 +787,7 @@ namespace GBM_Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fkcameraconfigtblconfigtblBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -897,7 +898,6 @@ namespace GBM_Dashboard
         private dashboardDataSet dashboardDataSet;
         private DevExpress.XtraGrid.Columns.GridColumn colconfiguration_description_fld;
         private DevExpress.XtraGrid.Columns.GridColumn colconfiguration_remarks_fld;
-        private DevExpress.XtraGrid.Columns.GridColumn colimage_path;
         private DevExpress.XtraGrid.Columns.GridColumn colactive_fld;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowID;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow rowconfig_description;
@@ -943,5 +943,6 @@ namespace GBM_Dashboard
         private dashboardDataSetTableAdapters.configuration_tblTableAdapter configuration_tblTableAdapter;
         private dashboardDataSetTableAdapters.camera_configuration_tblTableAdapter camera_configuration_tblTableAdapter;
         private Panel Content;
+        private PictureBox pictureBox1;
     }
 }
